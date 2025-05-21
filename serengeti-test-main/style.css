@@ -1,0 +1,147 @@
+body {
+    background-color: #1f1f1f;
+    background-size: 100% 100%;
+    color: white;
+}
+article {
+    display: flex;
+    flex-direction: column;
+}
+.start-cover {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.btn-start {
+    font-size: 16px;
+    color:#147700;
+    background-color: #1f1f1f;
+    border:#1f1f1f;
+}
+.btn-start, .btn-start:visited, .btn-start:hover, .btn-start:active {
+    font-size: 16px;
+    color:#147700;
+    background-color: #1f1f1f;
+    border:#1f1f1f;
+}
+.btn-start:active, .btn-start:focus {
+    background-color: #147700 !important;
+    border:#1f1f1f !important;
+    font-size: 16px;
+    color:#ffffff;
+}
+.question {
+    display: none;
+}
+.result {
+    display: none;
+}
+#img {
+    width: 300px; 
+    height: 300px;
+    margin: 0 auto;
+}
+.share {
+    margin: 0 auto;
+}
+.kakao_ad {
+    width: 320px;
+    margin: 0 auto;
+}
+.banner {
+    display: flex;
+    justify-content: center;
+    width: 300px;
+    margin: 0 auto;
+}
+.banner-img {
+    width: 300px;
+}
+#title {
+    font-size: medium;
+    font-weight: bold;
+    color: #147700;
+}
+.serengeti {
+    color: gray;
+    font-weight: bold;
+    font-size: small;
+}
+.sub-title {
+    font-size: 18pt;
+    font-weight: lighter;
+}
+.btn btn-outline-warning {
+    width: 20px;
+}
+.progress-bar {
+    background-color: #147700;
+}
+.progress {
+    background-color: #525764;
+}
+.btn-answer, .btn-answer:visited, .btn-answer:hover, .btn-answer:active, .btn-answer:focus {
+    background-color: #1f1f1f;
+    border:#1f1f1f;
+    width: 288px;
+    margin: 0 auto;
+    font-size: 13px;
+    color: #ffffff;
+}
+.btn-answer:hover {
+    background-color: #147700 !important;
+    border:#1f1f1f !important;
+    width: 288px;
+    margin: 0 auto;
+    font-size: 13px;
+    color: #ffffff;
+}
+.btn-start {
+    font-size: 16px;
+    color:#147700;
+    background-color: #1f1f1f;
+    border:#1f1f1f;
+}
+.btn-start, .btn-start:visited, .btn-start:hover, .btn-start:active {
+    font-size: 16px;
+    color:#147700;
+    background-color: #1f1f1f;
+    border:#1f1f1f;
+}
+.btn-start:active, .btn-start:focus {
+    background-color: #147700 !important;
+    border:#1f1f1f !important;
+    font-size: 16px;
+    color:#ffffff;
+}
+.result-message {
+    color: #147700;
+    margin: 0 auto;
+    font-size: 24px;
+    font-weight: bold;
+}
+.result-animal {
+    font-size: 18px;
+    font-weight: 100;
+    color: #ebebeb;
+}
+.result-explain {
+    font-size: 13px;
+    font-weight: normal;
+    color: #147700;
+}
+.share-message {
+    margin: 0 auto;
+    color:#ffffff;
+    font-size: 24px;
+    font-weight: 100;
+}
+#img {
+    width: 300px;
+    height: 300px;
+    margin: 0 auto;
+}
+.updown-slash {
+    width: 166px;
+    margin: 0 auto;
+}
