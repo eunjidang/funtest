@@ -7,8 +7,14 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
     <style>
         body {
-            background-color: #f8f9fa;
+            background: linear-gradient(to bottom, #f0f4ff, #ffffff);
             font-family: 'Noto Sans KR', sans-serif;
+            min-height: 100vh;
+            background-attachment: fixed;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            padding-bottom: 40px;
         }
         .btn-answer {
             width: 100%;
@@ -18,6 +24,13 @@
             max-width: 600px;
             margin: auto;
         }
+        .result {
+            background: #ffffffcc;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            animation: fadeInUp 1s ease;
+        }
         .result img {
             width: 200px;
             height: 200px;
@@ -25,6 +38,48 @@
             border-radius: 50%;
             display: block;
             margin: 20px auto;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        #userResult {
+            font-size: 1.6rem;
+            font-weight: bold;
+            color: #343a40;
+        }
+        #resultText {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #007bff;
+        }
+        #resultDesc {
+            white-space: pre-line;
+            font-size: 1rem;
+            margin-top: 20px;
+            color: #555;
+        }
+        #scorePercent {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #666;
+            margin-top: 20px;
+        }
+        .fade-in {
+            animation: fadeInUp 0.8s ease both;
+        }
+        #hashtags {
+            font-size: 0.95rem;
+            margin-top: 20px;
+            text-align: center;
+            color: #999;
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translate3d(0, 20px, 0);
+            }
+            to {
+                opacity: 1;
+                transform: translate3d(0, 0, 0);
+            }
         }
     </style>
 </head>
@@ -44,7 +99,7 @@
             <option value="여">여성</option>
         </select>
     </div>
-    <button type="button" class="btn btn-primary mt-3 btn-block" onclick='start();'>테스트 시작하기</button>
+    <button type="button" class="btn btn-success mt-3 btn-block" onclick='start();'>테스트 시작하기</button>
 </article>
 
 <article class="question" style="display:none;">
@@ -58,90 +113,25 @@
 </article>
 
 <article class="result" style="display:none;">
-    <h2 class="text-center mt-5">당신의 결과는?</h2>
+    <h2 class="text-center mt-5" id="userResult"></h2>
     <img id="resultImage" src="" alt="유형 이미지">
     <h3 id="resultText" class="text-center mt-3"></h3>
     <p class="text-center" id="resultDesc"></p>
+    <div class="mt-4">
+        <label class="font-weight-bold">테토 퍼센트</label>
+        <div class="progress mb-2">
+            <div id="tehtoBar" class="progress-bar bg-info" role="progressbar" style="width: 0%">0%</div>
+        </div>
+        <label class="font-weight-bold">에겐 퍼센트</label>
+        <div class="progress">
+            <div id="egenBar" class="progress-bar bg-warning" role="progressbar" style="width: 0%">0%</div>
+        </div>
+    </div>
+    <p class="text-center mt-3" id="scorePercent"></p>
+    <div id="hashtags"></div>
 </article>
 
 <input type="hidden" id="TF" value="0">
-<script>
-    var num = 1;
-    var q = {
-        1: {"title": "회사에서 후배가 실수했는데 울고 있음 (난 곧 회의 들어가야 함)", "type": "TF", "A": "‘울 시간에 정리부터 하지…’라고 생각하며 회의실로 감", "B": "“괜찮아? 우리 회의 끝나고 얘기하자”라고 속삭이며 토닥임"},
-        2: {"title": "친구가 단톡방에 ‘나 요즘 너무 외롭다…’라고 보냄 (다들 읽씹 중)", "type": "TF", "A": "‘음… 감정 어필인가? 괜히 반응했다가 부담될 수도 있으니 일단 관망", "B": "“무슨 일 있었어?”라고 개인톡 걸고 걱정됨"},
-        3: {"title": "친구가 연애 얘기하다 울먹이며 '나만 애정결핍인가봐'라고 말함", "type": "TF", "A": "“그건 성향이야. 애착 유형 분석은 해봤어?”", "B": "“그 기분 나도 알아… 공허하지?”"},
-        4: {"title": "카톡 잘 못 했더니 친구가 '요즘 너 좀 변한 것 같아'라고 함", "type": "TF", "A": "“지금 내 상황도 좀 이해해줘.”", "B": "‘헉 내가 소홀했나…’ 미안해서 바로 장문카톡 씀"},
-        5: {"title": "친구가 SNS에 눈물 셀카랑 함께 '버티기 힘들다' 올림", "type": "TF", "A": "‘이건 걱정인가 연출인가…’ 결국 반응 안 함", "B": "“너무 걱정돼… 얘기해줘”라고 DM함"},
-        6: {"title": "연인이 '너 말투가 너무 차가워'라고 말할 때", "type": "TF", "A": "“그건 말투고, 의도는 전혀 그런 게 아니야.”", "B": "“미안해… 상처 줬다면 고칠게.”"},
-        7: {"title": "친구가 헤어진 연인 얘기를 네 번째 반복 중", "type": "TF", "A": "“야 이제 좀 잊을 때 되지 않았냐…”", "B": "“아직 그 말이 계속 맴도는구나…”"},
-        8: {"title": "카페에서 친구가 조용히 '나 좀 우울한가 봐'라고 말함", "type": "TF", "A": "“뭐 때문에 그런지 구체적으로 말해줄 수 있어?”", "B": "“그렇게 말하는 거 자체가 많이 힘든 거야…”"},
-        9: {"title": "단체방에 생일 축하를 아무도 안 하고 있는 상황", "type": "TF", "A": "“이건 분위기상 그냥 넘어가도 되겠지…”", "B": "“헉 민망하겠다… 내가 먼저 보내야지”"},
-        10: {"title": "결혼식장에서 신부가 편지 읽다가 울음 터뜨림", "type": "TF", "A": "‘어우 민망해… 너무 연출같아’ 하며 물만 마심", "B": "같이 눈물 고이며 ‘왜 울컥하지…’"}
-    };
-
-    const resultMap = {
-        "테토남": {
-            img: "img/tm.png",
-            desc: "논리적인 사고와 이성적인 판단이 강한 테토남! 감정보다 문제 해결에 집중하는 편이에요."
-        },
-        "테토녀": {
-            img: "img/tw.png",
-            desc: "분석적이고 실용적인 사고를 가진 테토녀! 공감보다 팩트와 논리를 중시해요."
-        },
-        "에겐남": {
-            img: "img/fm.png",
-            desc: "따뜻하고 공감이 풍부한 에겐남! 누군가의 마음을 알아차리는 데 탁월해요."
-        },
-        "에겐녀": {
-            img: "img/fw.png",
-            desc: "감정을 섬세하게 읽고 함께 아파할 줄 아는 에겐녀! 감정의 바다에서 누구보다 깊이 헤엄쳐요."
-        }
-    };
-
-    function start() {
-        const name = document.getElementById("name").value;
-        const gender = document.getElementById("gender").value;
-        if (!name || !gender) {
-            alert("이름과 성별을 모두 입력해 주세요!");
-            return;
-        }
-        document.querySelector(".start").style.display = "none";
-        document.querySelector(".question").style.display = "block";
-        next();
-    }
-
-    document.getElementById("A").addEventListener("click", function() {
-        var type = document.getElementById("type").value;
-        var value = parseInt(document.getElementById(type).value);
-        document.getElementById(type).value = value + 1;
-        next();
-    });
-
-    document.getElementById("B").addEventListener("click", function() {
-        next();
-    });
-
-    function next() {
-        if (num > 10) {
-            document.querySelector(".question").style.display = "none";
-            document.querySelector(".result").style.display = "block";
-            var score = parseInt(document.getElementById("TF").value);
-            var gender = document.getElementById("gender").value;
-            var key = (score >= 6 ? "테토" : "에겐") + (gender === "남" ? "남" : "녀");
-            document.getElementById("resultText").innerText = key;
-            document.getElementById("resultImage").src = resultMap[key].img;
-            document.getElementById("resultDesc").innerText = resultMap[key].desc;
-        } else {
-            var question = q[num];
-            document.querySelector(".progress-bar").style.width = `calc(100/10*${num}%)`;
-            document.getElementById("title").innerText = question.title;
-            document.getElementById("type").value = question.type;
-            document.getElementById("A").innerText = question.A;
-            document.getElementById("B").innerText = question.B;
-            num++;
-        }
-    }
-</script>
+<script src="script.js"></script>
 </body>
 </html>
