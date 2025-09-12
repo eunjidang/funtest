@@ -1,90 +1,90 @@
 let num = 1;
 let userName = "";
 
-// 질문 6개 (반두라 SCT 기반)
+// 질문 6개 (반두라 행동양식 기반, 대학원 수업용)
 const q = {
     1: {
-        title: "새로운 연구 과제를 맡았을 때, 나는 어떻게 접근하는가?",
-        A: { text: "직접 실험이나 시도를 통해 문제 해결 방법을 찾아낸다.", scores: {lion:1} },
-        B: { text: "선행 연구와 사례를 먼저 관찰하고 전략을 참고한다.", scores: {giraffe:1} }
+        title: "새로운 프로젝트에서 낯선 도구를 써야 할 때, 나는 어떻게 행동할까?",
+        A: { text: "직접 시도하며 문제를 해결하려 한다.", scores: {lion:1} },
+        B: { text: "먼저 사용법과 사례를 관찰하고 계획을 세운다.", scores: {giraffe:1} }
     },
     2: {
-        title: "팀 프로젝트에서 예상치 못한 난관이 발생했을 때 나는…",
-        A: { text: "자신감 있게 즉시 해결책을 시도한다.", scores: {lion:1} },
-        B: { text: "팀원의 의견과 이전 경험을 살펴본 후 대응 전략을 세운다.", scores: {giraffe:1} }
+        title: "동료가 실수를 반복할 때 나는?",
+        A: { text: "바로 피드백을 주며 개선하도록 돕는다.", scores: {lion:1} },
+        B: { text: "관찰하며 어떤 환경적 요인이 작용했는지 분석한다.", scores: {owl:1} }
     },
     3: {
-        title: "동료가 실수했을 때, 나는 어떤 행동을 주로 하는가?",
-        A: { text: "직접 도와주며 문제를 해결하도록 유도한다.", scores: {owl:1} },
-        B: { text: "상황을 관찰하며 필요한 경우 간접적으로 피드백을 제공한다.", scores: {otter:1} }
+        title: "새로운 학습 기술을 배울 때 나는?",
+        A: { text: "직접 실습하며 빠르게 적용한다.", scores: {lion:1} },
+        B: { text: "모델링과 관찰을 통해 전략을 익힌다.", scores: {giraffe:1} }
     },
     4: {
-        title: "새로운 기술이나 툴을 배울 때 나는…",
-        A: { text: "직접 사용하며 시행착오를 통해 익힌다.", scores: {owl:1} },
-        B: { text: "능숙한 사람의 시연을 관찰하고 따라 배운다.", scores: {giraffe:1} }
+        title: "문제가 예상과 다르게 발생했을 때 나는?",
+        A: { text: "환경을 분석하고 대응 전략을 세운다.", scores: {otter:1} },
+        B: { text: "내 행동을 조절하며 문제 해결 방법을 찾는다.", scores: {owl:1} }
     },
     5: {
-        title: "실패 경험을 겪었을 때, 나는 주로 어떻게 행동하는가?",
-        A: { text: "실패 원인을 분석하고 전략을 수정하여 다시 도전한다.", scores: {owl:1} },
-        B: { text: "상황과 환경 요인을 평가하며 대응 방식을 조정한다.", scores: {otter:1} }
+        title: "팀 회의에서 새로운 아이디어를 제시해야 할 때 나는?",
+        A: { text: "즉시 제안하고 실행 방안을 논의한다.", scores: {lion:1} },
+        B: { text: "먼저 다른 사람의 의견을 관찰하고 참고한다.", scores: {giraffe:1} }
     },
     6: {
-        title: "학습이나 연구 계획을 세울 때, 나는 무엇을 더 중시하는가?",
-        A: { text: "내 자신의 계획과 목표 달성을 위한 자기조절 전략", scores: {owl:1} },
-        B: { text: "환경, 조건, 주변 리소스를 고려한 적응 전략", scores: {otter:1} }
+        title: "학습이나 업무 결과를 평가받을 때 나는?",
+        A: { text: "결과에 따라 행동을 조정하며 자기효능감을 강화한다.", scores: {owl:1} },
+        B: { text: "환경과 상호작용을 고려하며 다음 전략을 계획한다.", scores: {otter:1} }
     }
 };
 
-// 결과 맵 (전문적, SCT 기반)
+// 결과 맵
 const resultMap = {
     사자: {
         img: "img/lion.png",
-        desc: `🦁 사자형: 자기효능감 중심 행동자
-사자형은 높은 자기효능감을 기반으로 환경에 주도적으로 개입하며 도전적인 과제에도 적극적입니다.
-- 행동학습: 직접 경험과 시도를 통한 학습 선호
-- 사회인지적 특성: 환경과 상호작용하며 결과를 학습에 반영
-- 전략: 목표 설정과 자기조절을 통한 문제 해결
-\n🔹 사자형인 나는요! :
-경험적 학습과 자기효능감의 상관성이 높으며, 실습형 연구나 프로젝트 수행에서 두각을 나타냅니다.`
+        desc: `<b style="font-size:1.1rem;">🦁 사자형: 자기효능감 중심 행동자</b><br>
+        사자형은 높은 자기효능감을 기반으로 환경에 주도적으로 개입하며 도전적인 과제에도 적극적입니다.<br>
+        - 행동학습: 직접 경험과 시도를 통한 학습 선호<br>
+        - 사회인지적 특성: 환경과 상호작용하며 결과를 학습에 반영<br>
+        - 전략: 목표 설정과 자기조절을 통한 문제 해결<br>
+        <span style="font-size:1.05rem; font-weight:bold;">🔹 사자형인 나는요!</span><br>
+        경험적 학습과 자기효능감의 상관성이 높으며, 실습형 연구나 프로젝트 수행에서 두각을 나타냅니다.`
     },
     기린: {
         img: "img/g.png",
-        desc: `🦒 기린형: 관찰 및 모델 기반 학습자
-기린형은 다른 사람의 행동과 결과를 관찰하며 전략적으로 대응합니다.
-- 행동학습: 모방학습과 관찰을 통한 전략 수립
-- 사회인지적 특성: 주변 환경과 타인 행동에 민감
-- 전략: 사례 학습과 안전한 실천
-\n🔹 기린형인 나는요! :
-관찰학습과 모방 전략의 활용이 높으며, 안정적인 환경과 협력 상황에서 학습 성과가 강화됩니다.`
+        desc: `<b style="font-size:1.1rem;">🦒 기린형: 관찰과 모방 중심 행동자</b><br>
+        기린형은 주변 환경과 타인의 행동을 관찰하며 학습합니다.<br>
+        - 행동학습: 관찰과 모방을 통한 학습 선호<br>
+        - 사회인지적 특성: 다른 사람의 전략과 결과를 분석하여 자기 행동에 적용<br>
+        - 전략: 안전하고 효율적인 학습 계획 수립<br>
+        <span style="font-size:1.05rem; font-weight:bold;">🔹 기린형인 나는요!</span><br>
+        환경을 분석하고 관찰 중심으로 학습하는 성향으로, 팀 프로젝트나 협업 상황에서 전략적 의사결정을 돕습니다.`
     },
     수달: {
         img: "img/ot.png",
-        desc: `🦦 수달형: 환경 적응형 학습자
-수달형은 상황과 조건을 분석하고, 환경에 맞게 행동을 조정합니다.
-- 행동학습: 조건과 맥락 분석 후 유연한 행동 선택
-- 사회인지적 특성: 상호결정론적 행동 조정
-- 전략: 상황 분석 후 전략적 행동
-\n🔹 수달형인 나는요! :
-변화하는 환경에서 적응력이 높고, 예측 불가능한 상황에서도 최적 학습 전략을 도출할 수 있습니다.`
+        desc: `<b style="font-size:1.1rem;">🦦 수달형: 환경 적응형 행동자</b><br>
+        수달형은 환경을 읽고 상황에 맞게 유연하게 행동합니다.<br>
+        - 행동학습: 환경 분석과 조건 적응 중심<br>
+        - 사회인지적 특성: 상호결정론적 사고, 상황에 따른 전략적 선택<br>
+        - 전략: 조건에 따른 대응과 조율<br>
+        <span style="font-size:1.05rem; font-weight:bold;">🔹 수달형인 나는요!</span><br>
+        상황 분석과 적응력이 높아, 변화가 많은 환경에서도 효율적으로 학습하고 행동합니다.`
     },
     올빼미: {
         img: "img/ow.png",
-        desc: `🦉 올빼미형: 자기조절·성찰적 학습자
-올빼미형은 계획적이고 전략적 행동을 선호하며, 자신의 학습과 행동을 성찰합니다.
-- 행동학습: 성찰적 재도전과 전략적 문제 해결
-- 사회인지적 특성: 메타인지와 자기조절 능력 활용
-- 전략: 계획 → 실행 → 피드백 반영
-\n🔹 올빼미형인 나는요! :
-자기조절과 메타인지 능력이 우수하여, 장기적 학습 목표 달성에 최적화된 행동 패턴을 보입니다.`
+        desc: `<b style="font-size:1.1rem;">🦉 올빼미형: 자기조절 중심 행동자</b><br>
+        올빼미형은 자신의 행동을 계획하고 조절하며 전략적으로 학습합니다.<br>
+        - 행동학습: 자기조절과 전략적 시도<br>
+        - 사회인지적 특성: 학습 경험의 성찰과 재도전<br>
+        - 전략: 목표 달성 위한 계획과 조절<br>
+        <span style="font-size:1.05rem; font-weight:bold;">🔹 올빼미형인 나는요!</span><br>
+        자기조절 능력이 뛰어나며, 학습과 업무 수행에서 전략적 접근으로 높은 성과를 보여줍니다.`
     }
 };
 
 // 해시태그
 const hashtagMap = {
-    사자: "#자기효능감 #도전적 #행동중심 #문제해결 #리더십 #사회인지",
-    기린: "#관찰학습 #모방 #환경적응 #전략적 #사회인지 #팀워크",
-    수달: "#환경분석 #유연함 #상호결정 #적응형 #행동조정",
-    올빼미: "#자기조절 #계획적 #성찰적 #전략적학습 #메타인지 #사회인지"
+    사자: "#자기효능감 #도전적 #행동중심 #실습형 #프로젝트리더",
+    기린: "#관찰학습 #모방형 #전략적 #안정적 #협업지원",
+    수달: "#환경적응 #유연함 #상호결정 #조화로운행동 #조건분석",
+    올빼미: "#자기조절 #계획적 #성찰적 #전략적 #학습리더"
 };
 
 // 시작
@@ -119,16 +119,17 @@ function next(){
     document.getElementById("title").innerText = currentQuestion.title;
     document.getElementById("A").innerText = currentQuestion.A.text;
     document.getElementById("B").innerText = currentQuestion.B.text;
-    num++;
 }
 
 // 버튼 이벤트
 document.getElementById("A").addEventListener("click", function(){
-    addScore(q[num-1].A.scores);
+    addScore(q[num].A.scores);
+    num++;
     next();
 });
 document.getElementById("B").addEventListener("click", function(){
-    addScore(q[num-1].B.scores);
+    addScore(q[num].B.scores);
+    num++;
     next();
 });
 
@@ -153,9 +154,9 @@ function showResult(){
         }
     }
 
-    document.getElementById("userResult").innerText = `${userName}님의 행동·학습 유형은:`;
+    document.getElementById("userResult").innerText = `${userName}님의 동물 유형은:`;
     document.getElementById("resultText").innerText = maxAnimal;
     document.getElementById("resultImage").src = resultMap[maxAnimal].img;
-    document.getElementById("resultDesc").innerText = resultMap[maxAnimal].desc;
+    document.getElementById("resultDesc").innerHTML = resultMap[maxAnimal].desc; // HTML 적용
     document.getElementById("hashtags").innerText = hashtagMap[maxAnimal];
 }
