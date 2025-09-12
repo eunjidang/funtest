@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>반두라 동물유형 테스트</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            background: linear-gradient(to bottom, #dfe9ff, #ffffff);
+            font-family: 'Noto Sans KR', sans-serif;
+            min-height: 100vh;
+            padding-bottom: 50px;
+        }
+        .container-card {
+            max-width: 600px;
+            margin: 50px auto;
+        }
+        .card {
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        .btn-answer {
+            width: 100%;
+            white-space: normal;
+            margin-top: 15px;
+        }
+        .progress {
+            height: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .result img {
+            width: 180px;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 50%;
+            display: block;
+            margin: 20px auto;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+        #resultDesc {
+            white-space: pre-line;
+            font-size: 1rem;
+            margin-top: 20px;
+            color: #555;
+        }
+        #hashtags {
+            font-size: 0.95rem;
+            margin-top: 15px;
+            text-align: center;
+            color: #007bff;
+        }
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+        @keyframes fadeInUp {
+            from { opacity:0; transform:translate3d(0,20px,0); }
+            to { opacity:1; transform:translate3d(0,0,0); }
+        }
+        /* 애니메이션 지연 설정 */
+        .result h3 { animation-delay: 0.1s; }
+        .result img { animation-delay: 0.3s; }
+        .result h4 { animation-delay: 0.5s; }
+        .result p { animation-delay: 0.7s; }
+        .result .card.mt-4 { animation-delay: 0.9s; }
+    </style>
+</head>
+<body>
+
+<div class="container-card">
+
+    <!-- 시작 카드 -->
+    <div class="card p-4 start">
+        <h3 class="text-center mb-3">반두라식 성격 탐구</h3>
+        <p class="text-center text-muted mb-4">나는 어떤 동물일까? 간단한 5문항 테스트!</p>
+        <div class="form-group">
+            <input type="text" class="form-control" id="name" placeholder="이름을 입력하세요">
+        </div>
+        <button class="btn btn-primary btn-block" onclick="start();">테스트 시작</button>
+    </div>
+
+    <!-- 질문 카드 -->
+    <div class="card p-4 question" style="display:none;">
+        <div class="progress mb-3">
+            <div class="progress-bar bg-info" role="progressbar" style="width:0%"></div>
+        </div>
+        <h4 id="title" class="text-center mb-4">질문</h4>
+
+        <input type="hidden" id="lion" value="0">
+        <input type="hidden" id="giraffe" value="0">
+        <input type="hidden" id="otter" value="0">
+        <input type="hidden" id="owl" value="0">
+
+        <button id="A" class="btn btn-outline-primary btn-answer"></button>
+        <button id="B" class="btn btn-outline-secondary btn-answer"></button>
+    </div>
+
+    <!-- 결과 카드 -->
+    <div class="card p-4 result fade-in" style="display:none; background: linear-gradient(135deg, #ffffff, #e0f7ff); border-radius: 25px; box-shadow: 0 8px 30px rgba(0,0,0,0.15);">
+        <h3 class="text-center fade-in" id="userResult"></h3>
+        <img id="resultImage" src="" alt="동물 이미지" class="fade-in">
+        <h4 class="text-center mt-3 fade-in" id="resultText"></h4>
+        <p id="resultDesc" class="text-center fade-in"></p>
+        <p id="hashtags" class="fade-in"></p>
+
+        <div class="card mt-4 p-3 fade-in" style="background:#f0f8ff; border-radius:20px; box-shadow:0 4px 15px rgba(0,0,0,0.1);">
+            <h5>💡 재미있으셨나요?</h5>
+            <p>지금 해본 테스트는 곧 배우게 될 <strong>반두라의 사회인지 이론(Social Cognitive Theory)</strong>을 미리 체험해 보는 활동이었습니다.</p>
+            <p>본 수업에서는 오늘 경험한 자기효능감, 관찰학습, 상호결정론 같은 개념들을 깊이 배우고, 여러분의 행동과 학습 방식이 어떻게 연결되는지 살펴보고자 합니다.</p>
+        </div>
+    </div>
+
+</div>
+
+<script src="script3.js"></script>
+</body>
+</html>
