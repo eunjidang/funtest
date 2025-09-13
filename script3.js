@@ -36,42 +36,43 @@ const q = {
 }
 
 // 결과 맵
+// 결과 맵 (모든 동물 사자형 스타일 통일)
 const resultMap = {
     lion: {
         img: "img/lion.png",
         desc: `
-        <strong>🦁 사자형 — 자기효능감 기반의 즉각적 실행가</strong><br>
-        직접 해보고 문제를 해결하며 배우는 스타일입니다. 작은 성공을 반복적으로 경험하면서 자기효능감이 강화되는 유형으로, 빠른 시도와 높은 끈기가 특징입니다.
-        <br><strong> - 어떤 유형? : </strong> Bandura의 '성공경험(enactive mastery)'과 연결 — 행동 발화성이 높아요.
-        <br><strong> - 실천 포인트 : </strong> 과제를 세분화해 조기 성공을 설계하고, 즉각적·구체적 피드백을 제공하면 능력이 더 빠르게 발현됩니다.
-        `
+<strong>🦁 사자형 — 자기효능감 기반의 즉각적 실행가</strong><br><br>
+직접 해보고 문제를 해결하며 배우는 스타일입니다. 작은 성공을 반복적으로 경험하면서 자기효능감이 강화되는 유형으로, 빠른 시도와 높은 끈기가 특징입니다.
+<br><br><strong> - 어떤 유형? : </strong> Bandura의 '성공경험'과 연결 — 행동 발화성이 높아요.
+<br><strong> - 실천 포인트 : </strong> 과제를 세분화해 조기 성공을 설계하고, 즉각적·구체적 피드백을 제공하면 능력이 더 빠르게 발현됩니다.
+`
     },
     giraffe: {
         img: "img/giraffe.png",
         desc: `
-        <strong>🦒 기린형 — 관찰과 모방 중심 실행가</strong><br>
-        다른 사람의 행동을 세심하게 관찰하고, 전략을 배운 후 자신의 방식으로 적용합니다. 관찰 후 곧바로 실천 계획을 세우고 단계적으로 시도하는 것을 선호합니다.
-        <br><strong> - 어떤 유형? : </strong> Bandura의 '대리경험(vicarious experience)'과 연결 — 모델링과 관찰 학습을 통해 자기효능감을 높입니다.
-        <br><strong> - 실천 포인트 : </strong> 긍정적 롤모델을 설정하고, 관찰한 행동을 작은 단계로 실습하며 자신의 행동에 적용하면 효과가 극대화됩니다.
-        `
+<strong>🦒 기린형 — 관찰과 모방 기반 전략 학습자</strong><br><br>
+다른 사람의 행동과 전략을 주의 깊게 관찰하며 자기 방식으로 적용하는 유형입니다. 학습은 직접 경험뿐 아니라 모델링을 통한 간접 경험에서도 크게 향상됩니다. 자기효능감은 긍정적 롤모델을 통해 강화되며, 타인의 성공과 실수를 분석해 자신의 행동 계획에 반영하는 능력이 뛰어납니다.
+<br><br><strong> - 어떤 유형? : </strong> Bandura의 '대리경험'과 연결 — 모델을 관찰하고 모방하며 자기효능감 발현.
+<br><strong> - 실천 포인트 : </strong> 롤모델 행동 관찰과 분석을 반복하고, 배운 전략을 자신의 과제에 적용하면서 구체적 피드백을 받으면 학습 효과가 극대화됩니다.
+`
     },
     otter: {
-        img: "img/otter.png",
+        img: "img/dolphin.png",
         desc: `
-        <strong>🐬 수달형 — 환경 적응형 실행가</strong><br>
-        주변 환경과 상황을 파악하며, 조건에 맞게 행동을 조정하고 전략적으로 실행합니다. 변화가 많은 상황에서도 유연하게 대응하며 목표 달성을 시도합니다.
-        <br><strong> - 어떤 유형? : </strong> Bandura의 '상호결정론(reciprocal determinism)'과 연결 — 환경과 상호작용하며 자기효능감을 실현합니다.
-        <br><strong> - 실천 포인트 : </strong> 변화가 많은 상황에서 적응 전략을 세우고, 팀과 협력하여 행동 계획을 구체적으로 실행하면 능력 발현이 높아집니다.
-        `
+<strong>🐬 수달형 — 환경 적응형 협력 학습자</strong><br><br>
+주변 환경과 상황을 민첩하게 읽고, 유연하게 행동하며 전략적으로 학습하는 유형입니다. 변화가 많은 상황에서 신속하게 적응하고, 협력과 조율을 통해 공동의 목표를 달성합니다. 경험과 환경 피드백을 통해 자기효능감이 발현되며, 다양한 상황 속에서 학습과 성장의 기회를 적극적으로 탐색합니다.
+<br><br><strong> - 어떤 유형? : </strong> Bandura의 '상호결정론'과 연결 — 환경과 상호작용하며 자기효능감 발현.
+<br><strong> - 실천 포인트 : </strong> 변화가 많은 환경에서 적응 전략과 협력 활동을 계획하고 실행하며, 피드백을 통해 학습 성과와 효능감을 극대화할 수 있습니다.
+`
     },
     owl: {
         img: "img/owl.png",
         desc: `
-        <strong>🦉 올빼미형 — 계획적·성찰적 실행가</strong><br>
-        행동을 계획하고 자기 행동을 조절하며, 전략적으로 실행하는 유형입니다. 관찰과 성찰을 통해 실행 전 준비를 충분히 하고, 계획에 따라 체계적으로 시도합니다.
-        <br><strong> - 어떤 유형? : </strong> Bandura의 '자기조절(self-regulation)'과 연결 — 계획과 조절을 통해 자기효능감을 강화합니다.
-        <br><strong> - 실천 포인트 : </strong> 목표를 세분화하고 계획대로 실천하며, 실행 후 결과를 분석하고 피드백을 반영하면 학습과 행동 능력이 향상됩니다.
-        `
+<strong>🦉 올빼미형 — 자기조절 중심 전략 학습자</strong><br><br>
+계획적 실행과 성찰을 통해 학습하는 유형입니다. 목표를 세분화하고 행동을 체계적으로 조절하며, 전략적 시도를 반복하면서 자기효능감을 강화합니다. 학습 과정에서 성찰과 피드백을 적극 활용하며, 자신의 행동과 성취를 분석하고 개선하는 능력이 뛰어납니다.
+<br><br><strong> - 어떤 유형? : </strong> Bandura의 '자기조절'과 연결 — 자기 행동 계획과 조절로 자기효능감 강화.
+<br><strong> - 실천 포인트 : </strong> 계획적 학습, 실행 후 성찰, 피드백 활용을 반복하면 목표 달성과 자기효능감 향상에 큰 도움이 됩니다.
+`
     }
 };
 
@@ -98,8 +99,8 @@ function start() {
         alert("이름을 입력해 주세요!");
         return;
     }
-    document.querySelector(".start").style.display="none";
-    document.querySelector(".question").style.display="block";
+    document.querySelector(".start").style.display = "none";
+    document.querySelector(".question").style.display = "block";
     next();
 }
 
@@ -111,7 +112,7 @@ function next(){
     }
 
     const currentQuestion = q[num];
-    document.querySelector(".progress-bar").style.width = `calc(100/${Object.keys(q).length}*${num}%)`;
+    document.querySelector(".progress-bar").style.width = `${(num / Object.keys(q).length) * 100}%`;
     document.getElementById("title").innerText = currentQuestion.title;
     document.getElementById("A").innerText = currentQuestion.A.text;
     document.getElementById("B").innerText = currentQuestion.B.text;
@@ -131,8 +132,8 @@ document.getElementById("B").addEventListener("click", function(){
 
 // 결과 표시
 function showResult(){
-    document.querySelector(".question").style.display="none";
-    document.querySelector(".result").style.display="block";
+    document.querySelector(".question").style.display = "none";
+    document.querySelector(".result").style.display = "block";
 
     const scores = {
         lion: parseFloat(document.getElementById("lion").value),
@@ -141,21 +142,23 @@ function showResult(){
         owl: parseFloat(document.getElementById("owl").value)
     };
 
-    // 최고 점수 1개 랜덤 처리 (동점일 경우)
     let maxScore = Math.max(...Object.values(scores));
     let candidates = Object.keys(scores).filter(k => scores[k] === maxScore);
     let maxAnimal = candidates[Math.floor(Math.random() * candidates.length)];
 
-    const nameMap = {
-        lion: "사자",
-        giraffe: "기린",
-        otter: "수달",
-        owl: "올빼미"
-    };
+    const nameMap = { lion: "사자", giraffe: "기린", otter: "수달", owl: "올빼미" };
 
     document.getElementById("userResult").innerText = `${userName}님의 동물 유형은:`;
     document.getElementById("resultText").innerText = nameMap[maxAnimal];
     document.getElementById("resultImage").src = resultMap[maxAnimal].img;
     document.getElementById("resultDesc").innerHTML = resultMap[maxAnimal].desc;
-    document.getElementById("hashtags").innerText = hashtagMap[maxAnimal];
+
+    // 해시태그 span 적용
+    const hashtagContainer = document.getElementById("hashtags");
+    hashtagContainer.innerHTML = "";
+    hashtagMap[maxAnimal].split(" ").forEach(tag => {
+        const span = document.createElement("span");
+        span.innerText = tag;
+        hashtagContainer.appendChild(span);
+    });
 }
