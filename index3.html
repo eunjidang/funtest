@@ -57,7 +57,7 @@
             animation: fadeInUp 0.8s ease forwards;
         }
         .highlight {
-            font-size: 1.2rem; /* 원하는 크기 조절 */
+            font-size: 1.1rem;
             font-weight: bold;
             color: #007bff;
         }
@@ -65,7 +65,6 @@
             from { opacity:0; transform:translate3d(0,20px,0); }
             to { opacity:1; transform:translate3d(0,0,0); }
         }
-        /* 애니메이션 지연 설정 */
         .result h3 { animation-delay: 0.1s; }
         .result img { animation-delay: 0.3s; }
         .result h4 { animation-delay: 0.5s; }
@@ -79,12 +78,22 @@
 
     <!-- 시작 카드 -->
     <div class="card p-4 start">
-        <h3 class="text-center mb-3">반두라식 성격 탐구</h3>
-        <p class="text-center text-muted mb-4">나는 어떤 동물일까? 간단한 5문항 테스트!</p>
+        <h3 class="text-center mb-3">[교육학개론 4팀] 반두라 이론 기반 테스트</h3>
+        <p class="text-center text-muted mb-4">나는 어떤 동물일까? 간단한 6문항 테스트!</p>
         <div class="form-group">
             <input type="text" class="form-control" id="name" placeholder="이름을 입력하세요">
         </div>
         <button class="btn btn-primary btn-block" onclick="start();">테스트 시작</button>
+        <br><br>
+        <!-- 안내 박스 -->
+        <div class="card mt-4 p-3 fade-in"
+             style="background:#f9fcff; border-radius:20px; box-shadow:0 4px 15px rgba(0,0,0,0.1);">
+            <h5>📘 이 테스트는?</h5>
+            <p>이 활동은 <strong>Albert Bandura의 사회인지학습이론</strong>을 기반으로 제작된 간단한 흥미용 테스트입니다.</p>
+            <p>자기효능감, 관찰학습, 상호결정론 같은 핵심 개념을
+                <span class="highlight">재미있는 동물 유형</span>으로 풀어낸 것이며,
+                <strong>교육학개론 4팀의 수업 발표</strong>를 위한 활동입니다. 재미로만 즐겨주세요! </p>
+        </div>
     </div>
 
     <!-- 질문 카드 -->
@@ -110,7 +119,7 @@
         <h4 class="text-center mt-3 fade-in" id="resultText"></h4>
         <p id="resultDesc" class="text-center fade-in"></p>
         <p id="hashtags" class="fade-in"></p>
-
+        <br>
         <div class="card mt-4 p-3 fade-in" style="background:#f0f8ff; border-radius:20px; box-shadow:0 4px 15px rgba(0,0,0,0.1);">
             <h5>💡 재미있으셨나요?</h5>
             <p>지금 해본 테스트는 오늘 교육학개론 수업에서 발표할 <strong>반두라의 이론</strong>을 미리 체험해 보는 활동이었습니다.</p>
