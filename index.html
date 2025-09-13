@@ -3,135 +3,218 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>테토 vs 에겐 테스트</title>
+    <title>반두라 동물유형 테스트</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
     <style>
         body {
-            background: linear-gradient(to bottom, #f0f4ff, #ffffff);
-            font-family: 'Noto Sans KR', sans-serif;
+            font-family: 'Pretendard', sans-serif;
+            background: linear-gradient(to bottom, #f0f4f8, #ffffff);
             min-height: 100vh;
-            background-attachment: fixed;
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center;
-            padding-bottom: 40px;
+            margin: 0;
+            padding: 20px 0 40px 0;
         }
-        .btn-answer {
-            width: 100%;
-            white-space: normal;
-        }
-        .question, .result {
-            max-width: 600px;
-            margin: auto;
-        }
-        .result {
-            background: #ffffffcc;
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            animation: fadeInUp 1s ease;
-        }
-        .result img {
-            width: 200px;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 50%;
-            display: block;
-            margin: 20px auto;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-        }
-        #userResult {
-            font-size: 1.6rem;
-            font-weight: bold;
-            color: #343a40;
-        }
-        #resultText {
-            font-size: 2rem;
-            font-weight: 700;
-            color: #007bff;
-        }
-        #resultDesc {
-            white-space: pre-line;
-            font-size: 1rem;
-            margin-top: 20px;
-            color: #555;
-        }
-        #scorePercent {
-            font-size: 1.1rem;
-            font-weight: 500;
-            color: #666;
-            margin-top: 20px;
-        }
-        .fade-in {
-            animation: fadeInUp 0.8s ease both;
-        }
-        #hashtags {
+                #hashtags {
             font-size: 0.95rem;
             margin-top: 20px;
             text-align: center;
             color: #999;
         }
+
+        .container-card {
+            max-width: 650px;
+            margin: 40px auto;
+        }
+
+        /* 카드 공통 */
+        .card {
+            border-radius: 25px;
+            padding: 25px 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            background: #ffffffee;
+            transition: all 0.3s ease;
+        }
+        .card:hover {
+            box-shadow: 0 12px 35px rgba(0,0,0,0.12);
+        }
+
+        /* 시작 카드 */
+        .start h3 {
+            font-size: 1.7rem;
+            color: #2a2a2a;
+        }
+        .start p {
+            font-size: 1rem;
+            color: #555;
+        }
+        .start input {
+            border-radius: 15px;
+            padding: 12px;
+            border: 1px solid #ccc;
+        }
+        .start button {
+            background: linear-gradient(45deg, #6a9eff, #3c78d8);
+            border: none;
+            border-radius: 15px;
+            color: #fff;
+            padding: 12px;
+            font-size: 1rem;
+            transition: 0.3s;
+        }
+        .start button:hover {
+            background: linear-gradient(45deg, #3c78d8, #1a4fa3);
+        }
+
+        /* 안내 박스 */
+        .start .card.mt-4 {
+            background: #f0f8ff;
+            border-radius: 20px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+        }
+        .start .highlight {
+            color: #3c78d8;
+            font-weight: bold;
+        }
+
+        /* 질문 카드 */
+        .question {
+            display: none;
+        }
+        .question .progress {
+            height: 22px;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #e6f0ff;
+        }
+        .question .progress-bar {
+            background: #6a9eff;
+            font-weight: 500;
+            font-size: 0.95rem;
+            line-height: 22px;
+            color: #fff;
+            transition: width 0.3s ease;
+        }
+        .question button {
+            width: 100%;
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 15px;
+            font-size: 1rem;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        #A { background: #6a9eff; }
+        #A:hover { background: #3c78d8; }
+        #B { background: #ff7f50; }
+        #B:hover { background: #ff5722; }
+
+        /* 결과 카드 */
+        .result {
+            display: none;
+            background: linear-gradient(135deg, #ffffff, #e0f7ff);
+            border-radius: 25px;
+            box-shadow: 0 12px 35px rgba(0,0,0,0.1);
+        }
+        .result h2, .result h3 {
+            text-align: center;
+            color: #333;
+        }
+        .result h2 {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+        .result h3 {
+            font-size: 1.5rem;
+            margin-top: 15px;
+        }
+        .result img {
+            display: block;
+            margin: 20px auto;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+        }
+        .result p {
+            font-size: 1rem;
+            color: #555;
+            text-align: center;
+            margin-top: 15px;
+        }
+        .result .card.mt-4 {
+            background: #f0f8ff;
+            border-radius: 20px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+        }
+
+        /* 애니메이션 */
+        .fade-in {
+            animation: fadeInUp 0.8s ease both;
+        }
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translate3d(0, 20px, 0);
-            }
-            to {
-                opacity: 1;
-                transform: translate3d(0, 0, 0);
-            }
+            from { opacity:0; transform: translateY(20px);}
+            to { opacity:1; transform: translateY(0);}
         }
     </style>
 </head>
-<body class="container">
-<p class="text-center mt-5 h4">나의 공감 유형은?</p>
-<article class="start">
-    <h2 class="text-center mt-3">나는 테토? 에겐?</h2>
-    <div class="form-group mt-4">
-        <label for="name">이름</label>
-        <input type="text" class="form-control" id="name" placeholder="이름을 입력하세요">
-    </div>
-    <div class="form-group">
-        <label for="gender">성별</label>
-        <select class="form-control" id="gender">
-            <option value="">선택하세요</option>
-            <option value="남">남성</option>
-            <option value="여">여성</option>
-        </select>
-    </div>
-    <button type="button" class="btn btn-success mt-3 btn-block" onclick='start();'>테스트 시작하기</button>
-</article>
+<body>
 
-<article class="question" style="display:none;">
-    <div class="progress mt-5">
-        <div class="progress-bar" role="progressbar" style="width: calc(100/10*1%)"></div>
-    </div>
-    <h4 id="title" class="text-center mt-5">문제</h4>
-    <input id="type" type="hidden" value="TF">
-    <button id="A" type="button" class="btn-answer btn btn-outline-primary mt-4">A</button>
-    <button id="B" type="button" class="btn-answer btn btn-outline-secondary mt-2">B</button>
-</article>
+<div class="container-card">
 
-<article class="result" style="display:none;">
-    <h2 class="text-center mt-5" id="userResult"></h2>
-    <img id="resultImage" src="" alt="유형 이미지">
-    <h3 id="resultText" class="text-center mt-3"></h3>
-    <p class="text-center" id="resultDesc"></p>
-    <div class="mt-4">
-        <label class="font-weight-bold">테토 퍼센트</label>
-        <div class="progress mb-2">
-            <div id="tehtoBar" class="progress-bar bg-info" role="progressbar" style="width: 0%">0%</div>
+    <!-- 시작 카드 -->
+    <div class="card p-4 start">
+        <h3 class="text-center mb-3">[교육학개론 4팀] 반두라 이론 기반 테스트</h3>
+        <p class="text-center text-muted mb-4">나는 어떤 동물일까? 간단한 6문항 테스트!</p>
+        <div class="form-group">
+            <input type="text" class="form-control" id="name" placeholder="이름을 입력하세요">
         </div>
-        <label class="font-weight-bold">에겐 퍼센트</label>
-        <div class="progress">
-            <div id="egenBar" class="progress-bar bg-warning" role="progressbar" style="width: 0%">0%</div>
+        <button class="btn btn-primary btn-block" onclick="start();">테스트 시작</button>
+        <br><br>
+        <!-- 안내 박스 -->
+        <div class="card mt-4 p-3 fade-in">
+            <h5>📘 이 테스트는?</h5>
+            <p>이 활동은 <strong>Albert Bandura의 사회인지학습이론</strong>을 기반으로 제작된 간단한 흥미용 테스트입니다.</p>
+            <p>자기효능감, 관찰학습, 상호결정론 같은 핵심 개념을
+                <span class="highlight">재미있는 동물 유형</span>으로 풀어낸 것이며,
+                <strong>교육학개론 4팀의 수업 발표</strong>를 위한 활동입니다. 재미로만 즐겨주세요! </p>
         </div>
     </div>
-    <p class="text-center mt-3" id="scorePercent"></p>
-    <div id="hashtags"></div>
-</article>
 
-<input type="hidden" id="TF" value="0">
-<script src="script.js"></script>
+    <!-- 질문 카드 -->
+    <div class="card p-4 question">
+        <div class="progress mb-3">
+            <div class="progress-bar bg-info" role="progressbar" style="width:0%"></div>
+        </div>
+        <h4 id="title" class="text-center mb-4">질문</h4>
+
+        <input type="hidden" id="lion" value="0">
+        <input type="hidden" id="giraffe" value="0">
+        <input type="hidden" id="otter" value="0">
+        <input type="hidden" id="owl" value="0">
+
+        <button id="A" class="btn btn-outline-primary btn-answer"></button>
+        <button id="B" class="btn btn-outline-secondary btn-answer"></button>
+    </div>
+
+    <!-- 결과 카드 -->
+    <div class="card p-4 result fade-in">
+        <h2 class="text-center mt-5" id="userResult"></h2>
+        <img id="resultImage" src="" alt="유형 이미지">
+        <h3 id="resultText" class="text-center mt-3"></h3>
+        <p id="resultDesc" class="text-center fade-in"></p>
+        <p id="hashtags" class="fade-in"></p>
+
+        <div class="card mt-4 p-3 fade-in">
+            <h5>💡 재미있으셨나요?</h5>
+            지금 해본 테스트는 오늘 교육학개론 수업에서 발표할 반두라의 이론을 미리 체험해 보는 활동이었습니다.<br>
+            오늘 발표에서는 반두라의 이론에 대해 함께 탐구해보고자 합니다.
+        </div>
+    </div>
+
+</div>
+
+<script src="script3.js"></script>
 </body>
 </html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>테토 vs 에겐 테스트</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            background: linear-gradient(to bottom, #f0f4ff, #ffffff);
+            font-family: 'Noto Sans KR', sans-serif;
+            min-height: 100vh;
+            background-attachment: fixed;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            padding-bottom: 40px;
+        }
+        .btn-answer {
+            width: 100%;
+            white-space: normal;
+        }
+        .question, .result {
+            max-width: 600px;
+            margin: auto;
+        }
+        .result {
+            background: #ffffffcc;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            animation: fadeInUp 1s ease;
+        }
+        .result img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 50%;
+            display: block;
+            margin: 20px auto;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        #userResult {
+            font-size: 1.6rem;
+            font-weight: bold;
+            color: #343a40;
+        }
+        #resultText {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #007bff;
+        }
+        #resultDesc {
+            white-space: pre-line;
+            font-size: 1rem;
+            margin-top: 20px;
+            color: #555;
+        }
+        #scorePercent {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #666;
+            margin-top: 20px;
+        }
+        .fade-in {
+            animation: fadeInUp 0.8s ease both;
+        }
+        #hashtags {
+            font-size: 0.95rem;
+            margin-top: 20px;
+            text-align: center;
+            color: #999;
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translate3d(0, 20px, 0);
+            }
+            to {
+                opacity: 1;
+                transform: translate3d(0, 0, 0);
+            }
+        }
+    </style>
+</head>
+<body class="container">
+<p class="text-center mt-5 h4">나의 공감 유형은?</p>
+<article class="start">
+    <h2 class="text-center mt-3">나는 테토? 에겐?</h2>
+    <div class="form-group mt-4">
+        <label for="name">이름</label>
+        <input type="text" class="form-control" id="name" placeholder="이름을 입력하세요">
+    </div>
+    <div class="form-group">
+        <label for="gender">성별</label>
+        <select class="form-control" id="gender">
+            <option value="">선택하세요</option>
+            <option value="남">남성</option>
+            <option value="여">여성</option>
+        </select>
+    </div>
+    <button type="button" class="btn btn-success mt-3 btn-block" onclick='start();'>테스트 시작하기</button>
+</article>
+
+<article class="question" style="display:none;">
+    <div class="progress mt-5">
+        <div class="progress-bar" role="progressbar" style="width: calc(100/10*1%)"></div>
+    </div>
+    <h4 id="title" class="text-center mt-5">문제</h4>
+    <input id="type" type="hidden" value="TF">
+    <button id="A" type="button" class="btn-answer btn btn-outline-primary mt-4">A</button>
+    <button id="B" type="button" class="btn-answer btn btn-outline-secondary mt-2">B</button>
+</article>
+
+<article class="result" style="display:none;">
+    <h2 class="text-center mt-5" id="userResult"></h2>
+    <img id="resultImage" src="" alt="유형 이미지">
+    <h3 id="resultText" class="text-center mt-3"></h3>
+    <p class="text-center" id="resultDesc"></p>
+    <div class="mt-4">
+        <label class="font-weight-bold">테토 퍼센트</label>
+        <div class="progress mb-2">
+            <div id="tehtoBar" class="progress-bar bg-info" role="progressbar" style="width: 0%">0%</div>
+        </div>
+        <label class="font-weight-bold">에겐 퍼센트</label>
+        <div class="progress">
+            <div id="egenBar" class="progress-bar bg-warning" role="progressbar" style="width: 0%">0%</div>
+        </div>
+    </div>
+    <p class="text-center mt-3" id="scorePercent"></p>
+    <div id="hashtags"></div>
+</article>
+
+<input type="hidden" id="TF" value="0">
+<script src="script.js"></script>
+</body>
+</html>
